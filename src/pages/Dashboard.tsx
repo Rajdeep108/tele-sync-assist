@@ -97,45 +97,45 @@ const recentActivity = [
 
 export default function Dashboard() {
   return (
-    <div className="container mx-auto px-6 py-8 space-y-8">
+    <div className="container mx-auto px-8 py-6 space-y-6 max-w-7xl">
       {/* Page Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Dashboard</h1>
-        <p className="text-muted-foreground">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-foreground mb-3">Dashboard</h1>
+        <p className="text-muted-foreground text-lg">
           Overview of your telecom standards management system
         </p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {statsCards.map((card, index) => (
           <Card key={index} className="hover-lift">
-            <CardHeader className="pb-3">
+            <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium text-muted-foreground">
                   {card.title}
                 </CardTitle>
-                <div className={`p-2 rounded-lg ${card.color}`}>
-                  <card.icon className="h-4 w-4 text-white" />
+                <div className={`p-2.5 rounded-lg ${card.color}`}>
+                  <card.icon className="h-5 w-5 text-white" />
                 </div>
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-foreground">{card.value}</div>
-              <p className="text-xs text-muted-foreground mt-1">{card.subtitle}</p>
+            <CardContent className="pt-0">
+              <div className="text-3xl font-bold text-foreground mb-1">{card.value}</div>
+              <p className="text-sm text-muted-foreground">{card.subtitle}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
         {/* Recent Standards */}
-        <Card>
+        <Card className="h-fit">
           <CardHeader className="pb-4">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
                   <FileText className="h-5 w-5" />
                   Recent Standards
                 </CardTitle>
@@ -146,15 +146,15 @@ export default function Dashboard() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {recentStandards.map((standard, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors"
+                  className="flex items-center justify-between p-4 rounded-lg border bg-card hover:bg-accent/50 transition-colors"
                 >
                   <div className="flex-1">
-                    <div className="font-medium text-foreground">{standard.id}</div>
-                    <div className="text-sm text-muted-foreground">{standard.version}</div>
+                    <div className="font-semibold text-foreground text-base">{standard.id}</div>
+                    <div className="text-sm text-muted-foreground mt-0.5">{standard.version}</div>
                     <div className="text-xs text-muted-foreground mt-1">{standard.updated}</div>
                   </div>
                   <Badge
@@ -171,11 +171,11 @@ export default function Dashboard() {
         </Card>
 
         {/* Recent Activity */}
-        <Card>
+        <Card className="h-fit">
           <CardHeader className="pb-4">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
                   <Settings className="h-5 w-5" />
                   Recent Activity
                 </CardTitle>
@@ -186,11 +186,11 @@ export default function Dashboard() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {recentActivity.map((activity, index) => (
-                <div key={index} className="flex items-start gap-3 p-3 rounded-lg border bg-card">
+                <div key={index} className="flex items-start gap-4 p-4 rounded-lg border bg-card">
                   <div
-                    className={`p-2 rounded-lg ${
+                    className={`p-2.5 rounded-lg flex-shrink-0 ${
                       activity.priority === 'high'
                         ? 'bg-destructive/10 text-destructive'
                         : activity.priority === 'success'
@@ -203,9 +203,9 @@ export default function Dashboard() {
                     <activity.icon className="h-4 w-4" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-foreground">{activity.title}</div>
-                    <div className="text-sm text-muted-foreground">{activity.description}</div>
-                    <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                    <div className="font-semibold text-foreground text-base">{activity.title}</div>
+                    <div className="text-sm text-muted-foreground mt-0.5">{activity.description}</div>
+                    <div className="text-xs text-muted-foreground mt-2 flex items-center gap-1">
                       <Clock className="h-3 w-3" />
                       {activity.time}
                     </div>
